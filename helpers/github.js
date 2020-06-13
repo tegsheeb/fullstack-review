@@ -1,5 +1,5 @@
 const axios = require('axios');
-// const config = require('../config.js');
+const config = require('../config.js');
 const db = require('../database/index.js');
 
 // console.log('TOKEN', process.env.TOKEN);
@@ -18,7 +18,7 @@ const getReposByUsername = (req, res) => {
     url: `https://api.github.com/users/${name}/repos`,
     headers: {
       'User-Agent': 'request',
-      'Authorization': `token ${prcoess.env.TOKEN}`
+      'Authorization': `token ${config.TOKEN}`
     }
   };
 
