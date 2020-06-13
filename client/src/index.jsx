@@ -23,13 +23,20 @@ class App extends React.Component {
       data: {'username': term}
     })
       .done(
-        () => {console.log('succesfully posted data');}
+        // () => {console.log('succesfully posted data');}
+        () => {this.get();}
       )
       .fail(
         (jqXHR, textStatus) => {console.log(textStatus)}
       )
-
   }
+
+  get() {
+    $.get('/repos', (data) => {
+      this.setState (repos: data);
+    })
+  }
+
 
   render () {
     return (<div>

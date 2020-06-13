@@ -1,6 +1,6 @@
 const axios = require('axios');
 const config = require('../config.js');
-const save = require('../database/index.js');
+const db = require('../database/index.js');
 
 
 const getReposByUsername = (req, res) => {
@@ -22,10 +22,9 @@ const getReposByUsername = (req, res) => {
 
   axios(options)
     .then((data) => {
-      // console.log(Object.keys(res));
-      // =>  'status', 'statusText', 'headers', 'config', 'request', 'data' ]
-      console.log(data.data[0]);
-      save.save(data);
+      // console.log(Object.keys(data));
+      // =>  ['status', 'statusText', 'headers', 'config', 'request', 'data' ]
+      db.save(data);
       res.send('got data from API and saving to DB')
     })
     .catch((error) => {
