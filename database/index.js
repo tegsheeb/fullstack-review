@@ -59,8 +59,13 @@ module.exports = {
 
   },
 
+  // getting 25 repos sorted by fork number
   getData: (req, res) => {
-    Repo.find({}, function(err, result) {
+    Repo
+    .find({})
+    .sort('-fork_counts')
+    .limit(25)
+    .exec(function(err, result) {
       if (err) {
         console.log(err);
         res.status(400);
