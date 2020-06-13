@@ -15,6 +15,7 @@ let repoSchema = mongoose.Schema({
   repo_description: String,
   fork_counts: Number,
   updated_at: String,
+  owner_username: String,
 });
 
 
@@ -40,7 +41,8 @@ module.exports = {
         html_url: ele.html_url,
         repo_description: ele.description,
         fork_counts: ele.forks,
-        updated_at: ele.updated_at
+        updated_at: ele.updated_at,
+        owner_username: ele.owner.login,
       })
 
       repo.save( (err, arrayGitRepos) => {
