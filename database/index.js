@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const connection = mongoose.connect('mongodb://localhost/fetcher');
+const connection = mongoose.connect('mongodb://localhost/fetcher', { useMongoClient: true});
 
 // to drop the whole database
 // , function() { mongoose.connection.db.dropDatabase() }
