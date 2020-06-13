@@ -4,13 +4,14 @@ import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       repos: [],
       error: null,
-      // isLoaded: false,
+      isLoaded: false,
     }
   }
 
@@ -39,19 +40,18 @@ class App extends React.Component {
         (result) => {
           console.log(result);
           this.setState({
-            // isLoaded: true,
+            isLoaded: true,
             repos: result,
           });
         },
         (error) => {
           this.setState({
-            // isLoaded: true,
+            isLoaded: true,
             error
           });
         }
       )
   }
-
 
   componentDidMount() {
     this.get();
@@ -63,8 +63,8 @@ class App extends React.Component {
     if (error) {
       return <div> Error: {error.message} </div>;
     }
-    // else if (!isLoaded) {
-    //   return <div>Loading ...</div>}
+    else if (!isLoaded) {
+      return <div>Loading ...</div>}
     else {
       return (<div>
         <h1>Github Fetcher</h1>
