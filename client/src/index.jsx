@@ -8,9 +8,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      repos: []
+      repos: [],
+      error: null,
+      // isLoaded: false,
     }
-
   }
 
   search (term) {
@@ -32,18 +33,45 @@ class App extends React.Component {
   }
 
   get() {
-    $.get('/repos', (data) => {
-      this.setState (repos: data);
-    })
+    fetch('/repos')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+          this.setState({
+            // isLoaded: true,
+            repos: result,
+          });
+        },
+        (error) => {
+          this.setState({
+            // isLoaded: true,
+            error
+          });
+        }
+      )
   }
 
 
+  componentDidMount() {
+    this.get();
+  }
+
   render () {
-    return (<div>
-      <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
-      <Search onSearch={this.search.bind(this)}/>
-    </div>)
+    const {error, isLoaded, items} = this.state;
+
+    if (error) {
+      return <div> Error: {error.message} </div>;
+    }
+    // else if (!isLoaded) {
+    //   return <div>Loading ...</div>}
+    else {
+      return (<div>
+        <h1>Github Fetcher</h1>
+        <RepoList repos={this.state.repos}/>
+        <Search onSearch={this.search.bind(this)}/>
+      </div>)
+    }
   }
 }
 

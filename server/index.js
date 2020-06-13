@@ -27,9 +27,7 @@ app.get('/repos', function (req, res) {
 
 let port = 1128;
 
-let type = typeof getReposByUsername;
-
 app.listen(port, function() {
-  console.log(`listening on port ${port} and ${type}`);
+  console.log(`listening port at ${port}`);
 });
 

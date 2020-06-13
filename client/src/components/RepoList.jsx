@@ -5,10 +5,10 @@ const RepoList = (props) => (
   <div>
     <h4> Repo List Component </h4>
     There are {props.repos.length} repos.
-    Here is top 25 .
     <div>
-      
-
+    {props.repos.map( repo => {
+      <RepoItem repo= {repo}/>
+    })}
     </div>
 
   </div>

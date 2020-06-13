@@ -57,7 +57,7 @@ module.exports = {
 
   },
 
-  getaData: (req, res) => {
+  getData: (req, res) => {
     Repo.find({}, function(err, result) {
       if (err) {
         console.log(err);
@@ -66,7 +66,7 @@ module.exports = {
       } else {
         console.log(result);
         res.status(200);
-        res.send(data)
+        res.send(result)
       }
     })
   }
